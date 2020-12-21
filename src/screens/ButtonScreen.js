@@ -14,29 +14,29 @@ class ButtonScreen extends Component{
         return(
         <View>
             <Button 
-                title="Increment"
+                title="Increment count"
                 onPress = {()=>{this.props.incrementCount(value);}}
             />
             <Button 
-                title="Decrement"
+                title="Decrement count"
                 onPress = {()=>{this.props.decrementCount(value);}}
             />
             <View style={space}/>
             <Button 
-                title="Increment value 1"
+                title="Increment counter 1"
                 onPress = {()=>{this.props.increment1Count(value);}}
             />
             <Button 
-                title="Decrement value 1"
+                title="Decrement counter 1"
                 onPress = {()=>{this.props.decrement1Count(value);}}
             />
             <View style={space}/>
             <Button 
-                title="Increment value 2"
+                title="Increment counter 2"
                 onPress = {()=>{this.props.increment2Count(value);}}
             />
             <Button 
-                title="Decrement value 2"
+                title="Decrement counter 2"
                 onPress = {()=>{this.props.decrement2Count(value);}}
             />
             <View style={space}/>

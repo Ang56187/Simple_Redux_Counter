@@ -7,7 +7,9 @@ class CounterScreen extends Component{
     render(){
         return(
             <View>
-                <Text>{this.props.count}</Text>
+                <Text>Count:{this.props.count}</Text>
+                <Text>Inner_counter1: {this.props.inner_counter1}</Text>
+                <Text>Inner_counter2: {this.props.inner_counter2}</Text>
                 <Button 
                     title = "Go back"
                     onPress={()=>{this.props.navigation.navigate('Button')}}
@@ -21,7 +23,9 @@ const styles = StyleSheet.create({});
 
 const mapStateToProps = state => {
     return {
-        count: state.counter.count
+        count: state.counter.count,
+        inner_counter1: state.counter.inner_counter1,
+        inner_counter2: state.counter.inner_counter2
     }
 }
 
