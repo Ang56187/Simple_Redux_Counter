@@ -1,22 +1,43 @@
 import React,{Component, useReducer} from 'react';
-import { View, Button,Text} from 'react-native';
-import {incrementCount,decrementCount} from '../actions';
+import { View, Button,Text,TextInput} from 'react-native';
+import {incrementCount,decrementCount,
+    increment1Count,decrement1Count,
+    increment2Count,decrement2Count,changeValue} from '../actions';
 import {connect} from 'react-redux';
 
 class ButtonScreen extends Component{
     render(){
         const {space} = styles;
 
+        const {value} = this.props;
+
         return(
         <View>
             <Button 
                 title="Increment"
-                onPress = {()=>{this.props.incrementCount(1);}}
+                onPress = {()=>{this.props.incrementCount(value);}}
+            />
+            <Button 
+                title="Decrement"
+                onPress = {()=>{this.props.decrementCount(value);}}
             />
             <View style={space}/>
             <Button 
-                title="Decrement"
-                onPress = {()=>{this.props.decrementCount(1);}}
+                title="Increment value 1"
+                onPress = {()=>{this.props.increment1Count(value);}}
+            />
+            <Button 
+                title="Decrement value 1"
+                onPress = {()=>{this.props.decrement1Count(value);}}
+            />
+            <View style={space}/>
+            <Button 
+                title="Increment value 2"
+                onPress = {()=>{this.props.increment2Count(value);}}
+            />
+            <Button 
+                title="Decrement value 2"
+                onPress = {()=>{this.props.decrement2Count(value);}}
             />
             <View style={space}/>
             <Button 
@@ -24,7 +45,21 @@ class ButtonScreen extends Component{
                 onPress={()=>{this.props.navigation.navigate('Counter')}}
             />
             <View style={space}/>
-            <Text>{this.props.count}</Text>
+
+            <TextInput
+                label = "Increment decrement value"
+                keyboardType="numeric"
+                placeholder = "Enter value here"
+                value = {this.props.value}
+                onChangeText = {(value)=>{
+                    this.props.changeValue(value);
+                }}
+            />           
+            <Text>Increment/decrement value: {this.props.value}</Text> 
+            <Text>Count:{this.props.count}</Text>
+            <Text>Inner_counter1: {this.props.inner_counter1}</Text>
+            <Text>Inner_counter2: {this.props.inner_counter2}</Text>
+
         </View>
     );
 }};
@@ -37,8 +72,13 @@ const styles = {
 
 const mapStateToProps = state => {
     return {
-        count: state.counter.count
+        count: state.counter.count,
+        inner_counter1: state.counter.inner_counter1,
+        inner_counter2: state.counter.inner_counter2,
+        value : state.input.value
     }
 }
 
-export default connect(mapStateToProps,{incrementCount,decrementCount})(ButtonScreen);
+export default connect(mapStateToProps,{incrementCount,decrementCount,
+    increment1Count,decrement1Count,
+    increment2Count,decrement2Count,changeValue})(ButtonScreen);
